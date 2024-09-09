@@ -1,0 +1,30 @@
+.card{
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  color: black;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-data{
+  background-color:  #F6F8FF;
+  padding: 16px;
+  font-size: 14px;
+  color: #6c6c6c;
+  font-family: inherit;
+}
+.card img{
+  display: flex;
+    height: 100%;
+    width: 100%;
+}
+.temp{
+  height: 300px;
+  width: 300px;
+
+}
+.looks{
+  display: flex;
+}
+.cont{
+  width: 300px;
+}
