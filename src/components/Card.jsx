@@ -1,5 +1,4 @@
 import React from 'react'
-import Blog from '../assets/blogImage.png'
 import useFetchData from "../hooks/useFetchData"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
