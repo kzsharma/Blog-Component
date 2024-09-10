@@ -5,6 +5,6 @@ export default function useFetchData() {
   useEffect(() => {
     axios.get("https://www.aonflow.com/blog/wp-json/wp/v2/posts")
     .then((res) => setList(res.data));
-  }, [list]);
+  }, []);
   return list
 }

@@ -30,7 +30,6 @@ function Card() {
                     </div>
                 </SplideSlide>
             ))}
-
         </Splide>
     )
 }
