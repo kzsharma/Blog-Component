@@ -2,32 +2,30 @@ import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { EVENT_AUTOPLAY_PAUSE, EVENT_AUTOPLAY_PLAYING } from '@splidejs/splide';
-
 function Card() {
     const [list, setList] = useState([]);
+    const [isLoading,setIsLoading]= useState(true)
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://www.aonflow.com/blog/wp-json/wp/v2/posts');
                 setList(response.data.slice(0, 3));
-                setLoading(false);
+                setIsLoading(false)
             } catch (error) {
             }
         };
         fetchData();
     }, []);
     return (
-        <div className='temp'>
+        <>{ isLoading?<div>loading</div>:<div className='temp'>
         <Splide
             options={{
-               
-                Autoplay: true,
+                autoplay: true,
                 type: 'loop',
                 perPage: 1,
                 lazyLoad: 'nearby',
                 preloadPages: 1,
-                interval:500
+                interval:1000
             }}
             tag="section">
             {list.map((name, index) => {
@@ -35,7 +33,7 @@ function Card() {
                     <>
                         <SplideSlide key={index}>
                             <div>
-                                {name.title.rendered}
+                               
                                 <a href={name.link}>
                                     <div className='card'>
                                         <div className='image'>
@@ -54,6 +52,7 @@ function Card() {
             })}
         </Splide>
         </div>
+         } </>
     )
 }
 export default Card
