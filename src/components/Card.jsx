@@ -1,37 +1,59 @@
-import React from 'react'
-import useFetchData from "../hooks/useFetchData"
+import { React, useState, useEffect } from 'react'
+import axios from 'axios'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { EVENT_AUTOPLAY_PAUSE, EVENT_AUTOPLAY_PLAYING } from '@splidejs/splide';
+
 function Card() {
-    const list = useFetchData()
-    const Array = list.slice(0, 3)
+    const [list, setList] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://www.aonflow.com/blog/wp-json/wp/v2/posts');
+                setList(response.data.slice(0, 3));
+                setLoading(false);
+            } catch (error) {
+            }
+        };
+        fetchData();
+    }, []);
     return (
+        <div className='temp'>
         <Splide
             options={{
+               
+                Autoplay: true,
                 type: 'loop',
-                perPage: 1
+                perPage: 1,
+                lazyLoad: 'nearby',
+                preloadPages: 1,
+                interval:500
             }}
             tag="section">
-            {Array.map((name, index) => (
-                <SplideSlide key={index}>
-                    <div>
-                        <a href={name.link}>
-                            <div className='card'>
-                                <div className='image'>
-                                    <img src={name.uagb_featured_image_src.full[0]} />
-                                </div>
-                                <div className='card-data'>
-                                    <p>
-                                        {name.title.rendered}
-                                    </p>
-                                </div>
+            {list.map((name, index) => {
+                return (
+                    <>
+                        <SplideSlide key={index}>
+                            <div>
+                                {name.title.rendered}
+                                <a href={name.link}>
+                                    <div className='card'>
+                                        <div className='image'>
+                                            <img alt='Blog-Image' src={name.uagb_featured_image_src.full[0]} />
+                                        </div>
+                                        <div className='card-data'>
+                                            <p>
+                                                {name.title.rendered}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </SplideSlide>
-            ))}
+                        </SplideSlide> </>
+                )
+            })}
         </Splide>
+        </div>
     )
 }
-
 export default Card
