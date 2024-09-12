@@ -25,12 +25,12 @@ function Blog() {
             centeredSlides={true}
             loop={true}
             autoplay={{
-                delay: 1000,
+                delay: 1500,
                 disableOnInteraction: false,
             }}
-            // pagination={{
-            //   clickable: true,
-            // }}
+            pagination={{
+              clickable: true,
+            }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
         >

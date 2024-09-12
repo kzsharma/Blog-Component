@@ -4,7 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 function Card() {
     const [list, setList] = useState([]);
-    const [isLoading,setIsLoading]= useState(true)
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -17,42 +17,42 @@ function Card() {
         fetchData();
     }, []);
     return (
-        <>{ isLoading?<div>loading</div>:<div className='temp'>
-        <Splide
-            options={{
-                autoplay: true,
-                type: 'loop',
-                perPage: 1,
-                lazyLoad: 'nearby',
-                preloadPages: 1,
-                interval:1000
-            }}
-            tag="section">
-            {list.map((name, index) => {
-                return (
-                    <>
-                        <SplideSlide key={index}>
-                            <div>
-                               
-                                <a href={name.link}>
-                                    <div className='card'>
-                                        <div className='image'>
-                                            <img alt='Blog-Image' src={name.uagb_featured_image_src.full[0]} />
+        <>{isLoading ? <div>loading</div> : <div className='temp'>
+            <Splide
+                options={{
+                    autoplay: true,
+                    type: 'loop',
+                    perPage: 1,
+                    lazyLoad: 'nearby',
+                    preloadPages: 1,
+                    interval: 1500
+                }}
+                tag="section">
+                {list.map((name, index) => {
+                    return (
+                        <>
+                            <SplideSlide key={index}>
+                                <div>
+                                    <a href={name.link}>
+                                        <div className='card'>
+                                            <div className='image'>
+                                                <img alt='Blog-Image' src={name.uagb_featured_image_src.full[0]} />
+                                            </div>
+                                            <div className='card-data'>
+                                                <p>
+                                                    {name.title.rendered}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className='card-data'>
-                                            <p>
-                                                {name.title.rendered}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </SplideSlide> </>
-                )
-            })}
-        </Splide>
+                                    </a>
+                                </div>
+                            </SplideSlide>
+                        </>
+                    )
+                })}
+            </Splide>
         </div>
-         } </>
+        } </>
     )
 }
 export default Card
