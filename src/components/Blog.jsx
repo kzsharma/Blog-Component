@@ -11,8 +11,7 @@ function Blog() {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://www.aonflow.com/blog/wp-json/wp/v2/posts');
-                setList(response.data.slice(0, 3));
-                setLoading(false);
+                setList(response.data);
             } catch (error) {
             }
         };
@@ -39,7 +38,6 @@ function Blog() {
                     <>
                         <SwiperSlide key={index}>
                             <div>
-                                {name.title.rendered}
                                 <a href={name.link}>
                                     <div className='card'>
                                         <div className='image'>
