@@ -13,7 +13,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-
+import Link from '@mui/material/Link';
 function Blog() {
     const [list, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -62,9 +62,9 @@ function Blog() {
                 >
                     {list.map((name, index) => {
                         return (
-                            <>
+                            <> 
                                 <SwiperSlide key={index}>
-                                <a href={name.link}>
+                                <Link href={name.link}>
                                     <Card>
                                         <CardActionArea>
                                             <CardMedia
@@ -79,7 +79,7 @@ function Blog() {
                                             </CardContent>
                                         </CardActionArea>
                                     </Card>
-                                    </a>
+                                    </Link>
                                 </SwiperSlide>
                             </>
                         )
@@ -89,7 +89,6 @@ function Blog() {
         }
         </>
     )
-
 }
 
 export default Blog
